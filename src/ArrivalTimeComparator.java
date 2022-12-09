@@ -1,6 +1,6 @@
 import java.util.Comparator;
 
-public class TimeComparator implements Comparator<ProcessData> {
+public class ArrivalTimeComparator implements Comparator<ProcessData> {
 
     @Override
     public int compare(ProcessData o1, ProcessData o2) {

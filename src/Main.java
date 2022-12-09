@@ -33,9 +33,9 @@ public class Main {
             processes[i] = processData;
 
         }
-        Arrays.sort(processes, new TimeComparator());
+        Arrays.sort(processes, new ArrivalTimeComparator());
 
-        Scheduler scheduler = new RoundRobin(processes,contextSwitching,quantum) ;
+        Scheduler scheduler = new RoundRobin(processes, contextSwitching, quantum);
         scheduler.run();
         scheduler.printDetails();
 
