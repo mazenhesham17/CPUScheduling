@@ -1,8 +1,8 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class RoundRobin extends Scheduler {
-    RoundRobin(ProcessData[] processes, int contextSwitching, int quantum) {
+public class RoundRobinScheduler extends Scheduler {
+    RoundRobinScheduler(ProcessData[] processes, int contextSwitching, int quantum) {
         super(processes, contextSwitching, quantum);
         super.setName("Round Robin");
     }

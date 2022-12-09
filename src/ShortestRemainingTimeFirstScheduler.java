@@ -1,6 +1,6 @@
-public class ShortestTImeFirst extends Scheduler {
+public class ShortestRemainingTimeFirstScheduler extends Scheduler {
 
-    ShortestTImeFirst(ProcessData[] processes, int contextSwitching, int quantum) {
+    ShortestRemainingTimeFirstScheduler(ProcessData[] processes, int contextSwitching, int quantum) {
         super(processes, contextSwitching, quantum);
         super.setName("Preemptive Shortest Job First");
     }
