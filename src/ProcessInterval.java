@@ -24,4 +24,8 @@ public class ProcessInterval {
     public int getStart() {
         return start;
     }
+
+    public int getDuration() {
+        return end - start;
+    }
 }

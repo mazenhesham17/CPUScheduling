@@ -81,6 +81,14 @@ public class ProcessData {
         this.endTime = endTime;
     }
 
+    public void increment(int value) {
+        quantum += value;
+    }
+
+    public void clear() {
+        quantum = 0;
+    }
+
     public void decrement(int value) {
         remainingTime -= value;
     }

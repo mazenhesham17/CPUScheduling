@@ -23,7 +23,7 @@ public class RoundRobin extends Scheduler {
                 pointer++;
             }
             interval.setEnd(t);
-            if (currentProcess == null && (interval.getName() == "start" || (interval.getName() == "context" && interval.getEnd() - interval.getStart() == contextSwitching))) {
+            if (currentProcess == null && (interval.getName() == "start" || (interval.getName() == "context" && interval.getDuration() == contextSwitching))) {
                 if (!readyQueue.isEmpty()) {
                     currentProcess = readyQueue.poll();
                     if (interval.getName() == "context") {
@@ -35,7 +35,7 @@ public class RoundRobin extends Scheduler {
 
             if (interval.getName() != "context" && interval.getName() != "start") {
                 int runTime = Math.min(quantum, currentProcess.getRemainingTime());
-                if (interval.getEnd() - interval.getStart() == runTime) {
+                if (interval.getDuration() == runTime) {
                     currentProcess.decrement(runTime);
 
                     if (currentProcess.getRemainingTime() == 0) {

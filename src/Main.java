@@ -33,15 +33,16 @@ public class Main {
         }
         Arrays.sort(processes, new ArrivalTimeComparator());
 
-        //Scheduler scheduler = new RoundRobin(processes, contextSwitching, quantum);
+        Scheduler scheduler = new ShortestTImeFirst(processes, contextSwitching, quantum);
+        scheduler.run();
+        scheduler.printDetails();
+        //scheduler = new RoundRobin(processes, contextSwitching, quantum);
         //scheduler.run();
         //scheduler.printDetails();
-        Scheduler ss = new ShortestTImeFirst(processes,contextSwitching,quantum) ;
-        ss.run();
-        ss.printDetails();
-//        scheduler = new AGScheduler(processes,contextSwitching,quantum);
-//        scheduler.run();
-//        scheduler.printDetails();
+
+        //scheduler = new AGScheduler(processes,contextSwitching,quantum);
+        //scheduler.run();
+        //scheduler.printDetails();
 
     }
 
