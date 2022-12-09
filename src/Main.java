@@ -20,18 +20,16 @@ public class Main {
             System.out.print("Enter process burst time : ");
             int burst = scanner.nextInt();
             processData.setBurstTime(burst);
-            processData.setRemainingTime(burst);
             System.out.print("Enter process arrival time : ");
             int arrivalTime = scanner.nextInt();
             processData.setArrivalTime(arrivalTime);
-            System.out.print("Enter process priority time : ");
+            System.out.print("Enter process priority : ");
             int priority = scanner.nextInt();
             processData.setPriority(priority);
             System.out.print("Enter process quantum for AG : ");
             int quantumAG = scanner.nextInt();
             processData.setQuantum(quantumAG);
             processes[i] = processData;
-
         }
         Arrays.sort(processes, new ArrivalTimeComparator());
 

@@ -12,6 +12,9 @@ public abstract class Scheduler {
         this.contextSwitching = contextSwitching;
         this.quantum = quantum;
         timeLine = new Vector<>();
+        for ( ProcessData processData : processes ){
+            processData.setRemainingTime(processData.getBurstTime());
+        }
     }
 
     abstract void run();
