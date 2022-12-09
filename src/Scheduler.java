@@ -7,14 +7,20 @@ public abstract class Scheduler {
     int quantum;
     Vector<ProcessInterval> timeLine;
 
+    String name;
+
     Scheduler(ProcessData[] processes, int contextSwitching, int quantum) {
         this.processes = processes;
         this.contextSwitching = contextSwitching;
         this.quantum = quantum;
         timeLine = new Vector<>();
-        for ( ProcessData processData : processes ){
+        for (ProcessData processData : processes) {
             processData.setRemainingTime(processData.getBurstTime());
         }
+    }
+
+    protected void setName(String name) {
+        this.name = name;
     }
 
     abstract void run();
@@ -37,6 +43,7 @@ public abstract class Scheduler {
 
 
     public void printDetails() {
+        System.out.println("Scheduler name : " + name);
         for (ProcessInterval processInterval : timeLine) {
             System.out.println(processInterval.getName() + " start : " + processInterval.getStart() + " end : " + processInterval.getEnd());
         }
@@ -46,7 +53,7 @@ public abstract class Scheduler {
 
         System.out.println("Average Waiting Time : " + getAverageWaiting());
         System.out.println("Average TurnAround Time : " + getAverageTurnAround());
-
+        System.out.println();
 
     }
 }

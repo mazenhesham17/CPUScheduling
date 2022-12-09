@@ -4,6 +4,7 @@ import java.util.Queue;
 public class RoundRobin extends Scheduler {
     RoundRobin(ProcessData[] processes, int contextSwitching, int quantum) {
         super(processes, contextSwitching, quantum);
+        super.setName("Round Robin");
     }
 
     public void run() {

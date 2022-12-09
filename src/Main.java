@@ -37,6 +37,10 @@ public class Main {
         scheduler.run();
         scheduler.printDetails();
 
+//        scheduler = new AGScheduler(processes,contextSwitching,quantum);
+//        scheduler.run();
+//        scheduler.printDetails();
+
     }
 
 }
