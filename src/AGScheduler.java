@@ -149,8 +149,6 @@ public class AGScheduler extends Scheduler {
                     if (currentProcess.getRemainingTime() == 0) {
                         // process is finished
                         currentProcess.setEndTime(t);
-                        currentProcess.setTurnaroundTime(currentProcess.getEndTime() - currentProcess.getArrivalTime());
-                        currentProcess.setWaitingTime(currentProcess.getTurnaroundTime() - currentProcess.getBurstTime());
                         // scenario 4
                         currentProcess.clear();
                         updateQuantum();

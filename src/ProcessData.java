@@ -3,11 +3,22 @@ public class ProcessData {
     int arrivalTime;
     int burstTime;
     int priority;
-    int waitingTime;
-    int turnaroundTime;
     int quantum;
     int remainingTime;
+    int inTime;
     int endTime;
+
+    ProcessData() {
+        inTime = -1;
+    }
+
+    public int getInTime() {
+        return inTime;
+    }
+
+    public void setInTime(int inTime) {
+        this.inTime = inTime;
+    }
 
     public int getPriority() {
         return priority;
@@ -33,20 +44,12 @@ public class ProcessData {
         this.burstTime = burstTime;
     }
 
-    public int getTurnaroundTime() {
-        return turnaroundTime;
+    public int calculateTurnaroundTime() {
+        return endTime - arrivalTime;
     }
 
-    public void setTurnaroundTime(int turnaroundTime) {
-        this.turnaroundTime = turnaroundTime;
-    }
-
-    public int getWaitingTime() {
-        return waitingTime;
-    }
-
-    public void setWaitingTime(int waitingTime) {
-        this.waitingTime = waitingTime;
+    public int calculateWaitingTime() {
+        return calculateTurnaroundTime() - burstTime;
     }
 
     public int getArrivalTime() {

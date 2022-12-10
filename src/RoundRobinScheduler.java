@@ -40,8 +40,6 @@ public class RoundRobinScheduler extends Scheduler {
 
                     if (currentProcess.getRemainingTime() == 0) {
                         currentProcess.setEndTime(t + contextSwitching);
-                        currentProcess.setTurnaroundTime(currentProcess.getEndTime() - currentProcess.getArrivalTime());
-                        currentProcess.setWaitingTime(currentProcess.getTurnaroundTime() - currentProcess.getBurstTime());
                     } else {
                         readyQueue.add(currentProcess);
                     }

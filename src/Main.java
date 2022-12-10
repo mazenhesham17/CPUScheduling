@@ -33,15 +33,9 @@ public class Main {
         }
         Arrays.sort(processes, new ArrivalTimeComparator());
 
-        Scheduler scheduler = new ShortestRemainingTimeFirstScheduler(processes, contextSwitching, quantum);
+        Scheduler scheduler = new PreemptivePriorityScheduler(processes, contextSwitching, quantum);
         scheduler.run();
         scheduler.printDetails();
-        //scheduler = new RoundRobin(processes, contextSwitching, quantum);
-        //scheduler.run();
-        //scheduler.printDetails();
-        //scheduler = new AGScheduler(processes,contextSwitching,quantum);
-        //scheduler.run();
-        //scheduler.printDetails();
 
     }
 

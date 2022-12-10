@@ -30,8 +30,6 @@ public class ShortestRemainingTimeFirstScheduler extends Scheduler {
             }
             if (flag == true) {
                 currentProcess.setEndTime(timer + contextSwitching);
-                currentProcess.setTurnaroundTime(currentProcess.getEndTime() - currentProcess.getArrivalTime());
-                currentProcess.setWaitingTime(currentProcess.getTurnaroundTime() - currentProcess.getBurstTime());
                 interval = new ProcessInterval(currentProcess.getName(), timer);
             }
             timeLine.add(interval);

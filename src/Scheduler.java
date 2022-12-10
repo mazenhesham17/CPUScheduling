@@ -6,7 +6,6 @@ public abstract class Scheduler {
     int contextSwitching;
     int quantum;
     Vector<ProcessInterval> timeLine;
-
     String name;
 
     Scheduler(ProcessData[] processes, int contextSwitching, int quantum) {
@@ -28,7 +27,7 @@ public abstract class Scheduler {
     public double getAverageWaiting() {
         double sum = 0;
         for (ProcessData processData : processes) {
-            sum += processData.getWaitingTime();
+            sum += processData.calculateWaitingTime();
         }
         return sum / processes.length;
     }
@@ -36,7 +35,7 @@ public abstract class Scheduler {
     public double getAverageTurnAround() {
         double sum = 0;
         for (ProcessData processData : processes) {
-            sum += processData.getTurnaroundTime();
+            sum += processData.calculateTurnaroundTime();
         }
         return sum / processes.length;
     }
@@ -48,7 +47,7 @@ public abstract class Scheduler {
             System.out.println(processInterval.getName() + " start : " + processInterval.getStart() + " end : " + processInterval.getEnd());
         }
         for (ProcessData processData : processes) {
-            System.out.println(processData.getName() + " Waiting Time : " + processData.getWaitingTime() + " Turnaround Time : " + processData.getTurnaroundTime());
+            System.out.println(processData.getName() + " Waiting Time : " + processData.calculateWaitingTime() + " Turnaround Time : " + processData.calculateTurnaroundTime());
         }
 
         System.out.println("Average Waiting Time : " + getAverageWaiting());
