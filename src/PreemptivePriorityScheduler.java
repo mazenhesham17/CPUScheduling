@@ -14,11 +14,11 @@ public class PreemptivePriorityScheduler extends Scheduler {
         temp = new LinkedList<>();
     }
 
-    private void aging() {
+    private void aging(int currentTime) {
         Iterator<ProcessData> it = readyQueue.iterator();
         while (it.hasNext()) {
             ProcessData processData = it.next();
-            if (processData.getInTime() == -1) {
+            if (processData.getRemainingTime() == processData.getBurstTime() && currentTime-processData.getArrivalTime() >=15) {
                 processData.setPriority(processData.getPriority() - 1);
                 System.out.println(processData.getName() + " priority changed");
             }
@@ -31,14 +31,14 @@ public class PreemptivePriorityScheduler extends Scheduler {
         int index = 0;
         int n = processes.length;
         while (index < n || !readyQueue.isEmpty()) {
+            // check if process arrived
             while (index < n && processes[index].getArrivalTime() == time) {
                 ProcessData processData = processes[index];
                 readyQueue.add(processData);
                 index++;
             }
+            //get the most important process
             ProcessData processData = readyQueue.remove();
-            if (processData.getRemainingTime() == processData.getArrivalTime()) // first time to enter the Cpu
-                processData.setInTime(time);
             processData.setRemainingTime(processData.getRemainingTime() - 1);
             time++;
             Pair<String, Integer> pair = new Pair<>(processData.getName(), time);
@@ -50,7 +50,7 @@ public class PreemptivePriorityScheduler extends Scheduler {
             else // jop finished
                 processData.setEndTime(time);
             if (time % 15 == 0)
-                aging();
+                aging(time);
         }
         fixTimeLine();
     }

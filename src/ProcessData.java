@@ -5,20 +5,11 @@ public class ProcessData {
     int priority;
     int quantum;
     int remainingTime;
-    int inTime;
+    // int inTime;
     int endTime;
 
-    ProcessData() {
-        inTime = -1;
-    }
 
-    public int getInTime() {
-        return inTime;
-    }
-
-    public void setInTime(int inTime) {
-        this.inTime = inTime;
-    }
+    
 
     public int getPriority() {
         return priority;
