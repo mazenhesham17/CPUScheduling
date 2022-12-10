@@ -17,7 +17,7 @@ public class RoundRobinScheduler extends Scheduler {
         for (ProcessData process : processes) {
             maxTime = Math.max(maxTime, process.getArrivalTime());
         }
-        for (int t = 0; t <= maxTime || (!readyQueue.isEmpty() || currentProcess != null); t++) {
+        for (int t = 0; t <= maxTime || !readyQueue.isEmpty() || currentProcess != null; t++) {
             if (pointer < n && processes[pointer].getArrivalTime() == t) {
                 readyQueue.add(processes[pointer]);
                 pointer++;

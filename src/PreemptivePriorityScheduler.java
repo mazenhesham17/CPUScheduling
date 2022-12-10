@@ -8,6 +8,7 @@ public class PreemptivePriorityScheduler extends Scheduler {
 
     PreemptivePriorityScheduler(ProcessData[] processes, int contextSwitching, int quantum) {
         super(processes, contextSwitching, quantum);
+        super.setName("Preemptive Priority");
         int n = processes.length;
         readyQueue = new PriorityQueue<>(n, new PriorityComparator());
         temp = new LinkedList<>();
