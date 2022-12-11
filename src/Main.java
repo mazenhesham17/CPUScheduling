@@ -32,10 +32,10 @@ public class Main {
             processes[i] = processData;
         }
         Arrays.sort(processes, new ArrivalTimeComparator());
-
-        Scheduler scheduler = new PreemptivePriorityScheduler(processes, contextSwitching, quantum);
-        scheduler.run();
-        scheduler.printDetails();
+//        Scheduler scheduler = new PreemptivePriorityScheduler(processes, contextSwitching, quantum);
+            Scheduler scheduler = new ShortestRemainingTimeFirstScheduler(processes,contextSwitching , quantum) ;
+            scheduler.run();
+             scheduler.printDetails();
 
     }
 
