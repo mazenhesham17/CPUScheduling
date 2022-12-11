@@ -5,7 +5,6 @@ public class ProcessData {
     int priority;
     int quantum;
     int remainingTime;
-    // int inTime;
     int endTime;
 
 
