@@ -18,7 +18,7 @@ public class PreemptivePriorityScheduler extends Scheduler {
         Iterator<ProcessData> it = readyQueue.iterator();
         while (it.hasNext()) {
             ProcessData processData = it.next();
-            if (processData.getRemainingTime() == processData.getBurstTime() && currentTime-processData.getArrivalTime() >=15) {
+            if (processData.getRemainingTime() == processData.getBurstTime() && currentTime - processData.getArrivalTime() >= 15) {
                 processData.setPriority(processData.getPriority() - 1);
                 System.out.println(processData.getName() + " priority changed");
             }
@@ -55,7 +55,8 @@ public class PreemptivePriorityScheduler extends Scheduler {
         fixTimeLine();
     }
 
-    public void fixTimeLine() {
+    @Override
+    protected void fixTimeLine() {
         int last = Integer.MAX_VALUE;
         for (ProcessData processData : processes) {
             last = Math.min(last, processData.getArrivalTime());

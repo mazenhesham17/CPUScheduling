@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -32,11 +34,35 @@ public class Main {
             processes[i] = processData;
         }
         Arrays.sort(processes, new ArrivalTimeComparator());
-//        Scheduler scheduler = new PreemptivePriorityScheduler(processes, contextSwitching, quantum);
-            Scheduler scheduler = new ShortestRemainingTimeFirstScheduler(processes,contextSwitching , quantum) ;
-            scheduler.run();
-             scheduler.printDetails();
+        FileWriter fileWriter ;
+        try {
+            fileWriter = new FileWriter("output.txt") ;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
+        Scheduler scheduler = new ShortestRemainingTimeFirstScheduler(processes, contextSwitching, quantum);
+        scheduler.run();
+        scheduler.printDetails(fileWriter);
+
+        scheduler = new RoundRobinScheduler(processes, contextSwitching, quantum);
+        scheduler.run();
+        scheduler.printDetails(fileWriter);
+
+        scheduler = new PreemptivePriorityScheduler(processes, contextSwitching, quantum);
+        scheduler.run();
+        scheduler.printDetails(fileWriter);
+
+        scheduler = new AGScheduler(processes, contextSwitching, quantum);
+        scheduler.run();
+        scheduler.printDetails(fileWriter);
+
+
+        try {
+            fileWriter.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Vector;
 
 public abstract class Scheduler {
@@ -40,19 +42,37 @@ public abstract class Scheduler {
         return sum / processes.length;
     }
 
-
-    public void printDetails() {
-        System.out.println("Scheduler name : " + name);
+    protected void fixTimeLine() {
+        Vector<ProcessInterval> temp = new Vector<>();
         for (ProcessInterval processInterval : timeLine) {
-            System.out.println(processInterval.getName() + " start : " + processInterval.getStart() + " end : " + processInterval.getEnd());
+            if (temp.isEmpty() || !temp.lastElement().getName().equals(processInterval.getName())) {
+                temp.add(processInterval);
+            } else {
+                temp.lastElement().setEnd(processInterval.getEnd());
+            }
         }
-        for (ProcessData processData : processes) {
-            System.out.println(processData.getName() + " Waiting Time : " + processData.calculateWaitingTime() + " Turnaround Time : " + processData.calculateTurnaroundTime());
+        timeLine = temp;
+    }
+
+    public void printDetails(FileWriter fileWriter) {
+        try {
+            fileWriter.write("Scheduler name : " + name+"\n");
+            fileWriter.write("\n");
+            for (ProcessInterval processInterval : timeLine) {
+                fileWriter.write(processInterval.getName() + " start : " + processInterval.getStart() + " end : " + processInterval.getEnd()+"\n");
+            }
+            fileWriter.write("\n");
+
+            for (ProcessData processData : processes) {
+                fileWriter.write(processData.getName() + " Waiting Time : " + processData.calculateWaitingTime() + " Turnaround Time : " + processData.calculateTurnaroundTime()+"\n");
+            }
+            fileWriter.write("\n");
+
+            fileWriter.write("Average Waiting Time : " + getAverageWaiting()+"\n");
+            fileWriter.write("Average TurnAround Time : " + getAverageTurnAround()+"\n");
+            fileWriter.write("\n");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-
-        System.out.println("Average Waiting Time : " + getAverageWaiting());
-        System.out.println("Average TurnAround Time : " + getAverageTurnAround());
-        System.out.println();
-
     }
 }

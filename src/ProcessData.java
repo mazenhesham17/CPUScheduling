@@ -8,8 +8,6 @@ public class ProcessData {
     int endTime;
 
 
-    
-
     public int getPriority() {
         return priority;
     }

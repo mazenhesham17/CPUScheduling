@@ -49,6 +49,8 @@ public class RoundRobinScheduler extends Scheduler {
                 }
             }
         }
+        interval.setEnd(interval.getStart() + contextSwitching);
+        timeLine.add(interval);
     }
 
 

@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -109,18 +111,6 @@ public class AGScheduler extends Scheduler {
         return value - (value + 1) / 2;
     }
 
-    private void fixTimeLine() {
-        Vector<ProcessInterval> temp = new Vector<>();
-        for (ProcessInterval processInterval : timeLine) {
-            if (temp.isEmpty() || !temp.lastElement().getName().equals(processInterval.getName())) {
-                temp.add(processInterval);
-            } else {
-                temp.lastElement().setEnd(processInterval.getEnd());
-            }
-        }
-        timeLine = temp;
-    }
-
     @Override
     void run() {
         init();
@@ -193,14 +183,18 @@ public class AGScheduler extends Scheduler {
     }
 
     @Override
-    public void printDetails() {
-        super.printDetails();
+    public void printDetails(FileWriter fileWriter) {
+        super.printDetails(fileWriter);
         for (Vector<Pair<String, Integer>> pairs : quantums) {
-            System.out.print("Quantum : ");
-            for (Pair<String, Integer> pair : pairs) {
-                System.out.print("(" + pair.getFirst() + "," + pair.getSecond() + ") ");
+            try {
+                fileWriter.write("Quantum : ");
+                for (Pair<String, Integer> pair : pairs) {
+                    fileWriter.write("(" + pair.getFirst() + "," + pair.getSecond() + ") ");
+                }
+                fileWriter.write("\n");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-            System.out.println();
         }
     }
 }
