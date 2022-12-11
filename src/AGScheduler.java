@@ -163,8 +163,7 @@ public class AGScheduler extends Scheduler {
                             }
                         } else {
                             // scenario 1
-                            int value = currentProcess.getQuantum();
-                            currentProcess.increment(value);
+                            currentProcess.increment(2);
                             updateQuantum();
                             reset();
                             runTime = takeTop(t);
